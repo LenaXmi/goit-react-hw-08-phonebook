@@ -51,14 +51,14 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
  * headers: Authorization: Bearer token
  * После успешного логаута, удаляем токен из HTTP-заголовка
  */
-// export const logOut = createAsyncThunk('auth/logout', async () => {
-//   try {
-//     await axios.post('/users/logout');
-//     token.unset();
-//   } catch (error) {
-//     // TODO: Добавить обработку ошибки error.message
-//   }
-// });
+export const logOut = createAsyncThunk('auth/logout', async () => {
+  try {
+    await axios.post('/users/logout');
+    token.unset();
+  } catch (error) {
+    // TODO: Добавить обработку ошибки error.message
+  }
+});
 /*
  * GET @ /users/current
  * headers:
@@ -68,24 +68,24 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
  * 2. Если токена нет, выходим не выполняя никаких операций
  * 3. Если токен есть, добавляет его в HTTP-заголовок и выполянем операцию
  */
-// const fetchCurrentUser = createAsyncThunk(
-//   'auth/refresh',
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
+export const fetchCurrentUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
 
-//     if (persistedToken === null) {
-//       console.log('Токена нет, уходим из fetchCurrentUser');
-//       return thunkAPI.rejectWithValue();
-//     }
+    if (persistedToken === null) {
+      console.log('Токена нет, уходим из fetchCurrentUser');
+      return thunkAPI.rejectWithValue();
+    }
 
-//     token.set(persistedToken);
-//     try {
-//       const { data } = await axios.get('/users/current');
-//       return data;
-//     } catch (error) {
-//       // TODO: Добавить обработку ошибки error.message
-//     }
-//   },
-// );
+    token.set(persistedToken);
+    try {
+      const { data } = await axios.get('/users/current');
+      return data;
+    } catch (error) {
+      // TODO: Добавить обработку ошибки error.message
+    }
+  },
+);
 
