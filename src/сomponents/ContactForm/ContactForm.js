@@ -4,9 +4,9 @@ import { useState } from "react";
 // import { contactOperations } from "../../redux/phonebook";
 import { getContacts } from "../../redux/phonebook/phonebook-selectors";
 import { useAddContactMutation, useGetContactsQuery } from "../../redux/phonebook/phonebookSlise";
-import s from "./Form.module.css";
+import s from "./ContactForm.module.css";
 
-function Form() {
+function ContactForm() {
   const [addContact, { isLoading }] = useAddContactMutation()
   const {data}=useGetContactsQuery()
   const [name, setName] = useState("");
@@ -79,7 +79,7 @@ function Form() {
   );
 }
 
-export default Form;
+export default ContactForm;
 
 //Vanilla redux
 // const mapStateToProps = (state) => ({

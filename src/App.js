@@ -1,12 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 import { contactOperations } from './redux/phonebook'
 import { useGetContactsQuery } from "./redux/phonebook/phonebookSlise";
 import Container from "./сomponents/Container";
-import Form from "./сomponents/Form";
+import AppBar from './сomponents/AppBar'
+import ContactForm from "./сomponents/ContactForm";
 import Filter from "./сomponents/Filter";
 import Contacts from "./сomponents/Contacts";
 import s from "./App.module.css";
+import RegisterForm from "./сomponents/RegisterForm";
+import LoginForm from "./сomponents/LoginForm";
+import HomePage from "./сomponents/HomePage/HomePage";
 
 
 const App = () => {
@@ -21,11 +26,19 @@ const App = () => {
     <>
       {data && !isFetching ?
         (<Container>
-          <h1 className={s.Title}>Phonebook</h1>
-          <Form />
+          <AppBar />
+          <Routes>
+            <Route path='/' element={ <HomePage/>}/>
+            <Route path='/register' element={<RegisterForm />} />
+            <Route path='/login' element={<LoginForm />} />
+            <Route path='/contacts' element={<><Filter/><Contacts /></>} />
+             <Route path='/add' element={<ContactForm/>}/>
+          </Routes>
+          {/* <h1 className={s.Title}>Phonebook</h1>
+          <ContactForm />
           <h2 className={s.Title}>Contacts</h2>
           <Filter />
-          <Contacts />
+          <Contacts /> */}
         </Container>) : ('Loading...')}
     </>
 
