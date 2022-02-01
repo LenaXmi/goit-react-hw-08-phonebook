@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-export default function RegisterView() {
+export default function RegisterForm() {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

@@ -31,8 +31,8 @@ const App = () => {
             <Route path='/' element={ <HomePage/>}/>
             <Route path='/register' element={<RegisterForm />} />
             <Route path='/login' element={<LoginForm />} />
-            <Route path='/contacts' element={<><Filter/><Contacts /></>} />
-             <Route path='/add' element={<ContactForm/>}/>
+            {/* <Route path='/contacts' element={<><Filter/><Contacts /></>} />
+             <Route path='/add' element={<ContactForm/>}/> */}
           </Routes>
           {/* <h1 className={s.Title}>Phonebook</h1>
           <ContactForm />

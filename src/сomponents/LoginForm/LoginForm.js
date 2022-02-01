@@ -15,7 +15,7 @@ const styles = {
 };
 
 
-export default function LoginView() {
+export default function LoginForm() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,7 +33,8 @@ export default function LoginView() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(logIn({ email, password }));
+    const user={email,password}
+    dispatch(logIn(user));
     setEmail('');
     setPassword('');
   };
