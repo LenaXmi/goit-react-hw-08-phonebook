@@ -20,8 +20,7 @@ export default function AppBar() {
     <header style={styles.header}>
       <Navigation />
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
-          {/* <UserMenu/>
-          <AuthNav/> */}
+        
     </header>
   );
 }
