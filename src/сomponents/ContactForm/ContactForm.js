@@ -1,18 +1,16 @@
 
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-// import { contactOperations } from "../../redux/phonebook";
 import { getContacts } from "../../redux/phonebook/phonebook-selectors";
-import { useAddContactMutation, useGetContactsQuery } from "../../redux/phonebook/phonebookSlise";
+import { addContact } from "../../redux/phonebook/phonebook-operations";
 import s from "./ContactForm.module.css";
 
 function ContactForm() {
-  const [addContact, { isLoading }] = useAddContactMutation()
-  const {data}=useGetContactsQuery()
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  // const contacts = useSelector(getContacts);
-  // const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -27,14 +25,15 @@ function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addContact({name,phone})
-    const existingContact = data.find((contact) => name === contact.name);
+    // addContact({name,phone})
+    const existingContact = contacts.find((contact) => name === contact.name);
 
     if (existingContact) {
       reset()
       return alert(`${name} is already in contacts`);
     }
-    // dispatch(contactOperations.addContact( {name, phone}));
+    const contact={name, phone}
+    dispatch(addContact( contact));
     reset();
   };
 
@@ -72,7 +71,8 @@ function ContactForm() {
         />
       </label>
       <button className={s.FormBtn} type="submit" >
-        {isLoading?'Adding':'Add contact'}
+        Add contact
+        {/* {isLoading?'Adding':'Add contact'} */}
         
       </button>
     </form>

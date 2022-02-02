@@ -1,3 +1,3 @@
-export const getIsLoggedIn = state => state.authReducer.isLoggedIn;
+export const getIsLoggedIn = state => state.auth.isLoggedIn;
 
-export const getUserName = state => state.authReducer.user.name;
+export const getUserName = state => state.auth.user.name;

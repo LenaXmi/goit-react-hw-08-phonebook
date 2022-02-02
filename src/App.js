@@ -15,7 +15,7 @@ import HomePage from "./сomponents/HomePage/HomePage";
 
 
 const App = () => {
- const {data, isFetching}=useGetContactsQuery('')
+//  const {data, isFetching}=useGetContactsQuery('')
 //   const dispatch = useDispatch()
 
 //   useEffect(() => {
@@ -24,22 +24,22 @@ const App = () => {
 
   return (
     <>
-      {data && !isFetching ?
+     
         (<Container>
           <AppBar />
           <Routes>
             <Route path='/' element={ <HomePage/>}/>
             <Route path='/register' element={<RegisterForm />} />
             <Route path='/login' element={<LoginForm />} />
-            {/* <Route path='/contacts' element={<><Filter/><Contacts /></>} />
-             <Route path='/add' element={<ContactForm/>}/> */}
+            <Route path='/contacts' element={<><Filter/><Contacts /></>} />
+             <Route path='/add' element={<ContactForm/>}/>
           </Routes>
           {/* <h1 className={s.Title}>Phonebook</h1>
           <ContactForm />
           <h2 className={s.Title}>Contacts</h2>
           <Filter />
           <Contacts /> */}
-        </Container>) : ('Loading...')}
+        </Container>
     </>
 
   );

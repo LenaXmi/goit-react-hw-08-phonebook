@@ -1,8 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-// import { contactOperations } from "../../redux/phonebook";
-import {getFilter} from "../../redux/phonebook/phonebook-selectors";
-import { useGetContactsQuery, useDeleteContactMutation } from "../../redux/phonebook/phonebookSlise";
-import { selectAllContacts } from "../../redux/phonebook/phonebook-selectors";
+import { deleteContact } from "../../redux/phonebook/phonebook-operations";
+import { getVisibleContacts } from "../../redux/phonebook/phonebook-selectors";
 import { Oval } from "react-loader-spinner";
 import s from "./Contacts.module.css";
 
@@ -10,26 +8,15 @@ import s from "./Contacts.module.css";
 
 
 const Contacts = () => {
-  const { data, isFetching } = useGetContactsQuery('');
-  const [deleteContact] = useDeleteContactMutation()
-  const filtered = useSelector(getFilter)
-
-  // const contacts = useSelector(getVisibleContacts);
-  // const dispatch = useDispatch();
-
-  // const onDeleteContact = (id) => {
-  //   dispatch(contactOperations.deleteContact(id));
-  // };
-
-  const normalizedFilter = filtered.toLowerCase();
-  const visibleContacts=data.filter(({ name }) =>
-    name.toLowerCase().includes(normalizedFilter)
-  );
-
+  const contacts = useSelector(getVisibleContacts);
+  const dispatch = useDispatch();
+console.log(contacts);
+  const onDeleteContact = (id) => {
+    dispatch(deleteContact(id));
+  };
 
   return (
     <>
-      {isFetching && (
         <Oval
           ariaLabel="loading-indicator"
           height={50}
@@ -38,16 +25,16 @@ const Contacts = () => {
           color="black"
           secondaryColor="grey"
         />
-      )}
+      
       <ul className={s.ContactList}>
-        {data &&visibleContacts&&
-          visibleContacts.map(({ id, name, phone }) => (
+        {contacts.length!==0&&
+          contacts.map(({ id, name, phone }) => (
             <li key={id} className={s.ContactItem}>
               <p className={s.ContactData}>
                 {name}: {phone}
               </p>
               <button
-                onClick={() => deleteContact(id)}
+                onClick={() => onDeleteContact(id)}
                 className={s.ContactDelete}
               >
                 Delete
