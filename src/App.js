@@ -12,20 +12,20 @@ import s from "./App.module.css";
 import RegisterForm from "./сomponents/RegisterForm";
 import LoginForm from "./сomponents/LoginForm";
 import HomePage from "./сomponents/HomePage/HomePage";
-
+import { fetchCurrentUser } from "./redux/auth/auth-operations";
 
 const App = () => {
 //  const {data, isFetching}=useGetContactsQuery('')
-//   const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-//   useEffect(() => {
-//   dispatch(contactOperations.fetchContacts())
-// },[dispatch])
+  useEffect(() => {
+  dispatch(fetchCurrentUser())
+},[dispatch])
 
   return (
     <>
      
-        (<Container>
+        <Container>
           <AppBar />
           <Routes>
             <Route path='/' element={ <HomePage/>}/>

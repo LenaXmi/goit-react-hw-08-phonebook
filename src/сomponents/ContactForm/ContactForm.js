@@ -8,7 +8,7 @@ import s from "./ContactForm.module.css";
 function ContactForm() {
 
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [number, setNumber] = useState("");
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
@@ -19,20 +19,20 @@ function ContactForm() {
       setName(value);
     }
     if (name === "number") {
-      setPhone(value);
+      setNumber(value);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // addContact({name,phone})
+    
     const existingContact = contacts.find((contact) => name === contact.name);
 
     if (existingContact) {
       reset()
       return alert(`${name} is already in contacts`);
     }
-    const contact={name, phone}
+    const contact={name, number}
     dispatch(addContact( contact));
     reset();
   };
@@ -40,7 +40,7 @@ function ContactForm() {
   const reset = () => {
   
     setName("");
-    setPhone("");
+    setNumber("");
   };
   return (
     <form className={s.Form} onSubmit={handleSubmit}>
@@ -66,7 +66,7 @@ function ContactForm() {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={phone}
+          value={number}
           onChange={handleChange}
         />
       </label>
