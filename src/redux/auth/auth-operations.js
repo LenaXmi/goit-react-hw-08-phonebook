@@ -51,15 +51,16 @@ export const fetchCurrentUser = createAsyncThunk(
     const state = getState();
     console.log(state);
     const persistedToken = state.auth.token;
+    console.log(persistedToken);
 
     if (persistedToken === null) {
-      console.log('Токена нет, уходим из fetchCurrentUser');
+     
       return rejectWithValue();
     }
 
     token.set(persistedToken);
     try {
-      const { data } = await axios.get('/users/current');
+      const { data } = await axios.get('https://connections-api.herokuapp.com/users/current');
       return data;
     } catch (error) {
       rejectWithValue(error.message)

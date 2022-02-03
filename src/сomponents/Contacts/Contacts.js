@@ -14,9 +14,8 @@ const Contacts = () => {
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
  useEffect(() => dispatch(fetchContacts()), [dispatch]);
-  const onDeleteContact = (id) => {
-    dispatch(deleteContact(id));
-  };
+  
+
 
   return (
     <>
@@ -38,7 +37,7 @@ const Contacts = () => {
                 {name}: {phone}
               </p>
               <button
-                onClick={() => onDeleteContact(id)}
+                onClick={() => dispatch(deleteContact(id))}
                 className={s.ContactDelete}
               >
                 Delete

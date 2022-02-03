@@ -44,10 +44,10 @@ export const deleteContact = createAsyncThunk(
   'contact/deleteContact',
 
   async (id, { rejectWithValue }) => {
-    console.log(id);
+    
     try {
       const {data}=await axios.delete(`https://connections-api.herokuapp.com/contacts/${id}`)
-      
+ 
       return data.id
     }
     catch (error) {
