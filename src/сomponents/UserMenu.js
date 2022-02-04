@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserName, getIsLoggedIn } from '../redux/auth/auth-selectors';
+import { getUserName } from '../redux/auth/auth-selectors';
 import { logOut } from '../redux/auth/auth-operations';
-// import { authSelectors, authOperations } from '../../redux/auth';
+
 
 
 const styles = {
@@ -21,7 +21,7 @@ const styles = {
 export default function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(getUserName);
-const isLoggedIn=useSelector(getIsLoggedIn)
+
 
   return (
     <div style={styles.container}>

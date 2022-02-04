@@ -13,7 +13,8 @@ const Contacts = () => {
   const isLoadingContacts = useSelector(getLoading);
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
- useEffect(() => dispatch(fetchContacts()), [dispatch]);
+ 
+ 
   
 
 
@@ -30,14 +31,14 @@ const Contacts = () => {
         
       
       <ul className={s.ContactList}>
-        
+        {contacts.length===0&&<h1>You don't have any contact yet</h1>}
         {  contacts.map(({ id, name, phone }) => (
             <li key={id} className={s.ContactItem}>
               <p className={s.ContactData}>
                 {name}: {phone}
               </p>
               <button
-                onClick={() => dispatch(deleteContact(id))}
+                onClick={()=>dispatch(deleteContact(id))}
                 className={s.ContactDelete}
               >
                 Delete
