@@ -1,8 +1,8 @@
 import React from "react";
+import { Wrapper } from "./Container.styled";
 
-import s from "./Container.module.css";
 
 function Container({ children }) {
-  <div className={s.Container}>{children}</div>;
+ return <Wrapper>{children}</Wrapper>
 }
 export default Container;

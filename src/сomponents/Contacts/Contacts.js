@@ -6,7 +6,8 @@ import {
   getLoading,
 } from "../../redux/phonebook/phonebook-selectors";
 import { Oval } from "react-loader-spinner";
-import s from "./Contacts.module.css";
+import { Title, List, Item, Content, Btn} from './Contacts.styled'
+
 
 function Contacts ()  {
   const isLoadingContacts = useSelector(getLoading);
@@ -15,7 +16,10 @@ function Contacts ()  {
 
   return (
     <>
-      {isLoadingContacts && (
+      
+   {/* {contacts.length === 0 && <h1>You don't have any contact yet</h1>} */}
+      <List >
+        {isLoadingContacts && (
         <Oval
           ariaLabel="loading-indicator"
           height={50}
@@ -25,23 +29,40 @@ function Contacts ()  {
           secondaryColor="grey"
         />
       )}
-
-      <ul className={s.ContactList}>
-        {contacts.length === 0 && <h1>You don't have any contact yet</h1>}
-        {contacts.map(({ id, name, number }) => (
-          <li key={id} className={s.ContactItem}>
-            <p className={s.ContactData}>
+     {contacts?(contacts.map(({ id, name, number }) => (
+          <Item key={id} >
+          
+              <Content >
               {name}: {number}
-            </p>
-            <button
+            </Content>
+            <Btn
               onClick={() => dispatch(deleteContact(id))}
-              className={s.ContactDelete}
+            
             >
               Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+            </Btn>
+        
+            
+          </Item>
+        ))):(<Title>You don't have any contact yet</Title>)}
+        
+        {/* {contacts.map(({ id, name, number }) => (
+          <Item key={id} >
+          
+              <Content >
+              {name}: {number}
+            </Content>
+            <Btn
+              onClick={() => dispatch(deleteContact(id))}
+            
+            >
+              Delete
+            </Btn>
+        
+            
+          </Item>
+        ))} */}
+      </List>
     </>
   );
 };

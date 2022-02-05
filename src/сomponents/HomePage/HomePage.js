@@ -1,9 +1,10 @@
- function HomePage(){
+import {Section, Title} from './HomePage.styled' 
+function HomePage() {
     
      return (
-         <div>
-             <h1>Welcome to phonebook app</h1>
-    </div>
+         <Section>
+             <Title>Welcome to phonebook app</Title>
+    </Section>
 )
  }
 

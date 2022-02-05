@@ -1,17 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/auth-operations";
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: "flex",
-    flexDirection: "column",
-    marginBottom: 15,
-  },
-};
+import {Wrapper, Title, Form, Label, Input, FormBtn} from './LoginForm.styled'
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -38,33 +28,35 @@ function LoginForm() {
   };
 
   return (
-    <div>
-      <h1>Sign in</h1>
+    <Wrapper>
+      <Title>Sign in</Title>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Email
-          <input
+      <Form onSubmit={handleSubmit}  autoComplete="off">
+        <Label >
+        
+          <Input
+            placeholder="Email"
             type="email"
             name="email"
             value={email}
             onChange={handleChange}
           />
-        </label>
+        </Label>
 
-        <label style={styles.label}>
-          Password
-          <input
+        <Label >
+         
+          <Input
+            placeholder="Password"
             type="password"
             name="password"
             value={password}
             onChange={handleChange}
           />
-        </label>
+        </Label>
 
-        <button type="submit">Sign in</button>
-      </form>
-    </div>
+        <FormBtn type="submit">Sign in</FormBtn>
+      </Form>
+    </Wrapper>
   );
 }
 

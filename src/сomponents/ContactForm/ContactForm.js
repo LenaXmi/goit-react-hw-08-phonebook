@@ -2,7 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { getContacts } from "../../redux/phonebook/phonebook-selectors";
 import { addContact } from "../../redux/phonebook/phonebook-operations";
-import s from "./ContactForm.module.css";
+
+import{Wrapper, Title, Form, Label, Input, FormBtn} from './ContactForm.styled'
 
 function ContactForm() {
   const [name, setName] = useState("");
@@ -40,11 +41,13 @@ function ContactForm() {
     setNumber("");
   };
   return (
-    <form className={s.Form} onSubmit={handleSubmit}>
-      <label className={s.Label}>
-        Name
-        <input
-          className={s.Input}
+    <Wrapper>
+      <Title>Create new contact</Title>
+<Form onSubmit={handleSubmit}>
+      <Label >
+        
+        <Input
+          placeholder="Name"
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -53,11 +56,11 @@ function ContactForm() {
           value={name}
           onChange={handleChange}
         />
-      </label>
-      <label className={s.Label}>
-        Number
-        <input
-          className={s.Input}
+      </Label>
+      <Label >
+       
+        <Input
+          placeholder="Number"
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -66,12 +69,14 @@ function ContactForm() {
           value={number}
           onChange={handleChange}
         />
-      </label>
-      <button className={s.FormBtn} type="submit">
+      </Label>
+      <FormBtn type="submit">
         Add contact
         {/* {isLoading?'Adding':'Add contact'} */}
-      </button>
-    </form>
+      </FormBtn>
+    </Form>
+
+    </Wrapper>
   );
 }
 
