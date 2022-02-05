@@ -32,10 +32,10 @@ const Contacts = () => {
       
       <ul className={s.ContactList}>
         {contacts.length===0&&<h1>You don't have any contact yet</h1>}
-        {  contacts.map(({ id, name, phone }) => (
+        {  contacts.map(({ id, name, number }) => (
             <li key={id} className={s.ContactItem}>
               <p className={s.ContactData}>
-                {name}: {phone}
+                {name}: {number}
               </p>
               <button
                 onClick={()=>dispatch(deleteContact(id))}
