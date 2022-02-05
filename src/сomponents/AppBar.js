@@ -3,7 +3,7 @@ import Navigation from './Navigation';
 import UserMenu from './UserMenu';
 import AuthNav from './AuthNav';
 import { getIsLoggedIn } from '../redux/auth/auth-selectors';
-// import { authSelectors } from '../redux/auth';
+
 
 const styles = {
   header: {
@@ -13,8 +13,7 @@ const styles = {
     borderBottom: '1px solid #2A363B',
   },
 };
-
-export default function AppBar() {
+ function AppBar() {
   const isLoggedIn = useSelector(getIsLoggedIn);
   return (
     <header style={styles.header}>
@@ -23,4 +22,7 @@ export default function AppBar() {
         
     </header>
   );
-}
+ }
+
+
+export default AppBar

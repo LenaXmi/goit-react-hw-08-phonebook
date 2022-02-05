@@ -3,7 +3,7 @@ import { changeFilter } from "../../redux/phonebook/phonebook-actions";
 import { getFilter } from "../../redux/phonebook/phonebook-selectors";
 import s from "./Filter.module.css";
 
-const Filter = () => {
+function Filter ()  {
   const value = useSelector(getFilter);
   const dispatch = useDispatch();
 

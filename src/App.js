@@ -1,23 +1,38 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, Suspense, lazy } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import Container from "./сomponents/Container";
 import AppBar from "./сomponents/AppBar";
-import ContactForm from "./сomponents/ContactForm";
+
 import Filter from "./сomponents/Filter";
-import Contacts from "./сomponents/Contacts";
+
 import s from "./App.module.css";
-import RegisterForm from "./сomponents/RegisterForm";
-import LoginForm from "./сomponents/LoginForm";
-import HomePage from "./сomponents/HomePage/HomePage";
-import { fetchCurrentUser } from "./redux/auth/auth-operations";
-import { fetchContacts } from "./redux/phonebook/phonebook-operations";
+
 import PrivateRoute from "./сomponents/PrivateRoute";
 import PublicRoute from "./сomponents/PublicRoute";
+import { fetchCurrentUser } from "./redux/auth/auth-operations";
+import { fetchContacts } from "./redux/phonebook/phonebook-operations";
+import { getIsRefreshing } from "./redux/auth/auth-selectors";
+import { Oval } from "react-loader-spinner";
 
+const HomePage = lazy(() =>
+  import("./сomponents/HomePage" /* webpackChunkName: 'home-page' */)
+);
+const Contacts = lazy(() =>
+  import("./сomponents/Contacts" /* webpackChunkName: 'contacts' */)
+);
+const ContactForm = lazy(() =>
+  import("./сomponents/ContactForm" /* webpackChunkName: 'contact-form' */)
+);
+const RegisterForm = lazy(() =>
+  import("./сomponents/RegisterForm" /* webpackChunkName: 'register-form' */)
+);
+const LoginForm = lazy(() =>
+  import("./сomponents/LoginForm" /* webpackChunkName: 'login-form' */)
+);
 const App = () => {
-  //  const {data, isFetching}=useGetContactsQuery('')
+  const isRefreshing = useSelector(getIsRefreshing);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,55 +43,68 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <>
+    !isRefreshing && (
       <Container>
         <AppBar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <PublicRoute>
-                <HomePage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <PublicRoute restricted>
-                <RegisterForm />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <PublicRoute restricted>
-                <LoginForm />
-              </PublicRoute>
-            }
-          />
+        <Suspense
+          fallback={
+            <Oval
+              ariaLabel="loading-indicator"
+              height={50}
+              width={50}
+              strokeWidth={5}
+              color="black"
+              secondaryColor="grey"
+            />
+          }
+        >
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <PublicRoute>
+                  <HomePage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute restricted>
+                  <RegisterForm />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute restricted>
+                  <LoginForm />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/add"
-            element={
-              <PrivateRoute>
-                <ContactForm />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute>
-                <Filter />
-                <Contacts />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
+            <Route
+              path="/add"
+              element={
+                <PrivateRoute>
+                  <ContactForm />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute>
+                  <Filter />
+                  <Contacts />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </Suspense>
       </Container>
-    </>
+    )
   );
 };
 

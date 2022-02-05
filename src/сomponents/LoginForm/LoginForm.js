@@ -1,42 +1,40 @@
-
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/auth-operations';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/auth-operations";
 
 const styles = {
   form: {
     width: 320,
   },
   label: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     marginBottom: 15,
   },
 };
 
-
-export default function LoginForm() {
+function LoginForm() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
-      case 'email':
+      case "email":
         return setEmail(value);
-      case 'password':
+      case "password":
         return setPassword(value);
       default:
         return;
     }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const user={email,password}
+    const user = { email, password };
     dispatch(logIn(user));
-    setEmail('');
-    setPassword('');
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -69,3 +67,5 @@ export default function LoginForm() {
     </div>
   );
 }
+
+export default LoginForm;
