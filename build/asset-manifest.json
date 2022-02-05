@@ -1,13 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.b4d00749.css",
-    "main.js": "/static/js/main.d8c7cba3.js",
+    "main.css": "/static/css/main.6edf6ac8.css",
+    "main.js": "/static/js/main.7389a835.js",
+    "home-page.js": "/static/js/home-page.229da5ef.chunk.js",
+    "contacts.js": "/static/js/contacts.116eb080.chunk.js",
+    "contact-form.js": "/static/js/contact-form.178f60cb.chunk.js",
+    "register-form.js": "/static/js/register-form.329599d8.chunk.js",
+    "login-form.js": "/static/js/login-form.f7ef481c.chunk.js",
     "index.html": "/index.html",
-    "main.b4d00749.css.map": "/static/css/main.b4d00749.css.map",
-    "main.d8c7cba3.js.map": "/static/js/main.d8c7cba3.js.map"
+    "main.6edf6ac8.css.map": "/static/css/main.6edf6ac8.css.map",
+    "main.7389a835.js.map": "/static/js/main.7389a835.js.map",
+    "home-page.229da5ef.chunk.js.map": "/static/js/home-page.229da5ef.chunk.js.map",
+    "contacts.116eb080.chunk.js.map": "/static/js/contacts.116eb080.chunk.js.map",
+    "contact-form.178f60cb.chunk.js.map": "/static/js/contact-form.178f60cb.chunk.js.map",
+    "register-form.329599d8.chunk.js.map": "/static/js/register-form.329599d8.chunk.js.map",
+    "login-form.f7ef481c.chunk.js.map": "/static/js/login-form.f7ef481c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b4d00749.css",
-    "static/js/main.d8c7cba3.js"
+    "static/css/main.6edf6ac8.css",
+    "static/js/main.7389a835.js"
   ]
 }

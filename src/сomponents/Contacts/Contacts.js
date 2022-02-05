@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { deleteContact } from "../../redux/phonebook/phonebook-operations";
+import { deleteContact, fetchContacts } from "../../redux/phonebook/phonebook-operations";
 import {
   getVisibleContacts,
   getLoading,
@@ -14,10 +15,12 @@ function Contacts ()  {
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchContacts())
+  },[dispatch])
   return (
-    <>
-      
-   {/* {contacts.length === 0 && <h1>You don't have any contact yet</h1>} */}
+
+
       <List >
         {isLoadingContacts && (
         <Oval
@@ -45,25 +48,9 @@ function Contacts ()  {
             
           </Item>
         ))):(<Title>You don't have any contact yet</Title>)}
-        
-        {/* {contacts.map(({ id, name, number }) => (
-          <Item key={id} >
-          
-              <Content >
-              {name}: {number}
-            </Content>
-            <Btn
-              onClick={() => dispatch(deleteContact(id))}
-            
-            >
-              Delete
-            </Btn>
-        
-            
-          </Item>
-        ))} */}
+
       </List>
-    </>
+   
   );
 };
 

@@ -12,7 +12,7 @@ import s from "./App.module.css";
 import PrivateRoute from "./сomponents/PrivateRoute";
 import PublicRoute from "./сomponents/PublicRoute";
 import { fetchCurrentUser } from "./redux/auth/auth-operations";
-import { fetchContacts } from "./redux/phonebook/phonebook-operations";
+
 import { getIsRefreshing } from "./redux/auth/auth-selectors";
 import { Oval } from "react-loader-spinner";
 
@@ -33,14 +33,13 @@ const LoginForm = lazy(() =>
 );
 const App = () => {
   const isRefreshing = useSelector(getIsRefreshing);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+
 
   return (
     !isRefreshing && (
