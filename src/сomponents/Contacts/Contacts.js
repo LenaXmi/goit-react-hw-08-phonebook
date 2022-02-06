@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { deleteContact, fetchContacts } from "../../redux/phonebook/phonebook-operations";
 import {
   getVisibleContacts,
   getLoading,
 } from "../../redux/phonebook/phonebook-selectors";
 import { Oval } from "react-loader-spinner";
-import { Title, List, Item, Content, Btn} from './Contacts.styled'
+import { LoaderWrapper, Title, List, Item, Content, Btn} from './Contacts.styled'
 
 
 function Contacts ()  {
@@ -23,14 +22,16 @@ function Contacts ()  {
 
       <List >
         {isLoadingContacts && (
-        <Oval
+        <LoaderWrapper >
+           <Oval
           ariaLabel="loading-indicator"
           height={50}
           width={50}
           strokeWidth={5}
-          color="black"
-          secondaryColor="grey"
+          color="#7B68EE"
+          secondaryColor="#483D8B"
         />
+       </LoaderWrapper>
       )}
      {contacts?(contacts.map(({ id, name, number }) => (
           <Item key={id} >

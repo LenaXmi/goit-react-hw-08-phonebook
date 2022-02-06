@@ -9,14 +9,14 @@ const initialState = {
 };
 
 const authReducer = createReducer(initialState, {
-  [register.fulfilled]: (state, { payload }) => {
-    state.user = payload.user;
-    state.token = payload.token;
-    state.isLoggedIn = payload.isLoggedIn;
+  [register.fulfilled]: (state, action) => {
+    state.user = action.payload.user;
+    state.token = action.payload.token;
+    state.isLoggedIn = true;
   },
-  [logIn.fulfilled]: (state, { payload }) => {
-    state.user = payload.user;
-    state.token = payload.token;
+  [logIn.fulfilled]: (state, action) => {
+    state.user = action.payload.user;
+    state.token = action.payload.token;
     state.isLoggedIn = true;
   },
   [logOut.fulfilled]: (state, action) => {
@@ -27,8 +27,8 @@ const authReducer = createReducer(initialState, {
   [fetchCurrentUser.pending]: (state) => {
     state.isRefreshing = true;
   },
-  [fetchCurrentUser.fulfilled]: (state, { payload }) => {
-    state.user = payload;
+  [fetchCurrentUser.fulfilled]: (state, action) => {
+    state.user = action.payload;
     state.isLoggedIn = true;
     state.isRefreshing = false;
   },

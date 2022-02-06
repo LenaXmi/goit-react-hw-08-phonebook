@@ -4,17 +4,13 @@ import { Routes, Route } from "react-router-dom";
 
 import Container from "./сomponents/Container";
 import AppBar from "./сomponents/AppBar";
-
 import Filter from "./сomponents/Filter";
-
-import s from "./App.module.css";
-
 import PrivateRoute from "./сomponents/PrivateRoute";
 import PublicRoute from "./сomponents/PublicRoute";
 import { fetchCurrentUser } from "./redux/auth/auth-operations";
-
 import { getIsRefreshing } from "./redux/auth/auth-selectors";
 import { Oval } from "react-loader-spinner";
+import "./App.css";
 
 const HomePage = lazy(() =>
   import("./сomponents/HomePage" /* webpackChunkName: 'home-page' */)
@@ -40,21 +36,22 @@ const App = () => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-
   return (
     !isRefreshing && (
       <Container>
         <AppBar />
         <Suspense
           fallback={
-            <Oval
-              ariaLabel="loading-indicator"
-              height={50}
-              width={50}
-              strokeWidth={5}
-              color="black"
-              secondaryColor="grey"
-            />
+            <div className="loader">
+              <Oval
+                ariaLabel="loading-indicator"
+                height={50}
+                width={50}
+                strokeWidth={5}
+                color="#7B68EE"
+                secondaryColor="#483D8B"
+              />
+            </div>
           }
         >
           <Routes>

@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/auth-operations";
-import {Wrapper, Title, Form, Label, Input, FormBtn} from './RegisterForm.styled'
-
+import {
+  Wrapper,
+  Title,
+  Form,
+  Label,
+  Input,
+  FormBtn,
+} from "./RegisterForm.styled";
 
 function RegisterForm() {
   const dispatch = useDispatch();
@@ -35,16 +41,22 @@ function RegisterForm() {
     <Wrapper>
       <Title>Sign up</Title>
 
-      <Form onSubmit={handleSubmit}  autoComplete="off">
-        <Label >
-        
-          <Input placeholder="Name" type="text" name="name" value={name} onChange={handleChange} />
+      <Form onSubmit={handleSubmit} autoComplete="off">
+        <Label>
+          <Input
+            placeholder="Name"
+            autoComplete="false"
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleChange}
+          />
         </Label>
 
-        <Label >
-          
+        <Label>
           <Input
             placeholder="Email"
+            autoComplete="false"
             type="email"
             name="email"
             value={email}
@@ -52,10 +64,10 @@ function RegisterForm() {
           />
         </Label>
 
-        <Label >
-         
+        <Label>
           <Input
             placeholder="Password"
+            autoComplete="false"
             type="password"
             name="password"
             value={password}
