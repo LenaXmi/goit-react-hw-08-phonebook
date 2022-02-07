@@ -11,30 +11,21 @@ import {
 } from "./RegisterForm.styled";
 
 function RegisterForm() {
+  const initialState = { name: '', email: '', password: '' }
+  const [registerData, setRegisterData]=useState(initialState)
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case "name":
-        return setName(value);
-      case "email":
-        return setEmail(value);
-      case "password":
-        return setPassword(value);
-      default:
-        return;
-    }
+
+  const handleChange = (e) => {
+  const { name, value } = e.currentTarget;
+      setRegisterData((prev) => ({ ...prev, [name]: value }));
+
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(register({ name, email, password }));
-    setName("");
-    setEmail("");
-    setPassword("");
+    dispatch(register(registerData));
+  setRegisterData(initialState)
   };
 
   return (
@@ -48,7 +39,7 @@ function RegisterForm() {
             autoComplete="false"
             type="text"
             name="name"
-            value={name}
+            value={registerData.name}
             onChange={handleChange}
           />
         </Label>
@@ -59,7 +50,7 @@ function RegisterForm() {
             autoComplete="false"
             type="email"
             name="email"
-            value={email}
+            value={registerData.email}
             onChange={handleChange}
           />
         </Label>
@@ -70,7 +61,7 @@ function RegisterForm() {
             autoComplete="false"
             type="password"
             name="password"
-            value={password}
+            value={registerData.password}
             onChange={handleChange}
           />
         </Label>

@@ -11,27 +11,23 @@ import {
 } from "./LoginForm.styled";
 
 function LoginForm() {
+  const initialState = { email: '', password: '' }
+  const [loginData, setLoginData]=useState(initialState)
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case "email":
-        return setEmail(value);
-      case "password":
-        return setPassword(value);
-      default:
-        return;
-    }
+
+  const handleChange = (e) => {
+    const { name, value } = e.currentTarget;
+
+    setLoginData((prev) => ({ ...prev, [name]: value }));
+
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = { email, password };
-    dispatch(logIn(user));
-    setEmail("");
-    setPassword("");
+   
+    dispatch(logIn(loginData));
+   setLoginData(initialState)
   };
 
   return (
@@ -45,7 +41,7 @@ function LoginForm() {
             autoComplete="false"
             type="email"
             name="email"
-            value={email}
+            value={loginData.email}
             onChange={handleChange}
           />
         </Label>
@@ -56,7 +52,7 @@ function LoginForm() {
             autoComplete="false"
             type="password"
             name="password"
-            value={password}
+            value={loginData.password}
             onChange={handleChange}
           />
         </Label>
